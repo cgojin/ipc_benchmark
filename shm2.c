@@ -119,7 +119,7 @@ void rb_free(ringbuffer_t *rb, int master) {
 }
 
 // 已使用大小
-inline int rb_used(ringbuffer_t *rb) {
+static inline int rb_used(ringbuffer_t *rb) {
     uint32_t head = rb->head;
     uint32_t tail = rb->tail;
     if (head <= tail)
