@@ -2,6 +2,12 @@ CC := gcc
 CFLAGS := -g -Wall
 TARGET := pipe fifo socketpair uds tcp udp shm shm2
 
+ifeq ($(shell uname),Darwin)
+	LIBS :=
+else
+	LIBS := "-lrt"
+endif
+
 all: $(TARGET)
 
 pipe: pipe.c
@@ -26,7 +32,7 @@ shm: shm.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 shm2: shm2.c
-	$(CC) $(CFLAGS) -o $@ $< -lrt
+	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
 
 .PHONY: test
 test:

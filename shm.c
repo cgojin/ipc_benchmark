@@ -8,11 +8,13 @@
 #include <sys/types.h>
 #include <sys/time.h>
 
+#ifndef __APPLE__
 union semun {
     int val;
     struct semid_ds *buf;
     unsigned short *array;
 };
+#endif
 
 void sem_init(int sem_id, int sem_num, int init_valve)
 {
